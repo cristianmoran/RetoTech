@@ -11,7 +11,7 @@ import com.whiz.reto.domain.entity.movies.ListMovies
 import com.whiz.reto.domain.entity.movies.Movie
 import com.whiz.reto.domain.entity.movies.toModel
 import com.whiz.reto.domain.entity.movies.toModelDB
-import com.whiz.reto.network.EventResult
+import com.whiz.reto.core.network.EventResult
 import com.whiz.reto.repository.MoviesRepository
 import javax.inject.Inject
 

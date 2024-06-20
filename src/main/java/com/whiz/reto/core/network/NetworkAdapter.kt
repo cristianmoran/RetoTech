@@ -1,4 +1,4 @@
-package com.whiz.reto.network
+package com.whiz.reto.core.network
 
 import android.content.Context
 import com.google.gson.GsonBuilder

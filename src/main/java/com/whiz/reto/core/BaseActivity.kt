@@ -10,9 +10,9 @@ import com.refill_gas.app.core.dialog.message.MessageBottomSheetFragment
 import com.whiz.reto.R
 import com.whiz.reto.core.model.MessageDialogModel
 import com.whiz.reto.core.model.MessageError
+import com.whiz.reto.core.network.EventResult
 import com.whiz.reto.core.uimodel.UiLoadState
 import com.whiz.reto.domain.entity.ErrorRetrofitType
-import com.whiz.reto.network.EventResult
 
 abstract class BaseActivity : AppCompatActivity() {
 

@@ -8,7 +8,7 @@ import com.whiz.reto.core.uimodel.UiLoadState
 import com.whiz.reto.domain.entity.movies.ListMovies
 import com.whiz.reto.domain.entity.movies.Movie
 import com.whiz.reto.domain.usecase.ListMoviesUseCase
-import com.whiz.reto.network.EventResult
+import com.whiz.reto.core.network.EventResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

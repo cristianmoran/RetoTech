@@ -1,6 +1,6 @@
 package com.whiz.reto.data.base
 
-import com.whiz.reto.network.EventResult
+import com.whiz.reto.core.network.EventResult
 
 
 abstract class BaseDataRepository {
