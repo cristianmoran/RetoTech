@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import com.whiz.reto.core.BaseActivity
 import com.whiz.reto.databinding.ActivityDetailMovieBinding
 import com.whiz.reto.domain.entity.movies.DetailMovie
-import com.whiz.reto.util.isConnected
+import com.whiz.reto.core.util.isConnected
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.whiz.reto.repository
+package com.whiz.reto.domain.repository
 
 import com.whiz.reto.domain.entity.movies.DetailMovie
 import com.whiz.reto.domain.entity.movies.ListMovies

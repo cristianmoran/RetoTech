@@ -1,7 +1,7 @@
 package com.whiz.reto.presentation.di
 
 import com.whiz.reto.data.repository.MoviesDataRepository
-import com.whiz.reto.repository.MoviesRepository
+import com.whiz.reto.domain.repository.MoviesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

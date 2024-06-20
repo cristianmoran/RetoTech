@@ -3,8 +3,8 @@ package com.whiz.reto.core.network
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.whiz.reto.domain.entity.ErrorRetrofitType
-import com.whiz.reto.util.isAirplaneModeActive
-import com.whiz.reto.util.isConnectedRed
+import com.whiz.reto.core.util.isAirplaneModeActive
+import com.whiz.reto.core.util.isConnectedRed
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call

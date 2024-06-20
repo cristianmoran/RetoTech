@@ -6,7 +6,7 @@ import com.whiz.reto.core.BaseActivity
 import com.whiz.reto.databinding.ActivityMainBinding
 import com.whiz.reto.presentation.feature.detail.DetailMovieActivity
 import com.whiz.reto.presentation.feature.main.adapter.MovieAdapter
-import com.whiz.reto.util.isConnected
+import com.whiz.reto.core.util.isConnected
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

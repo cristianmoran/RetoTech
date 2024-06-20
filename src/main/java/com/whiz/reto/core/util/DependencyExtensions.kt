@@ -1,4 +1,4 @@
-package com.whiz.reto.util
+package com.whiz.reto.core.util
 
 import android.annotation.SuppressLint
 import android.content.Context

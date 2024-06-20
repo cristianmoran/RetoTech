@@ -12,7 +12,7 @@ import com.whiz.reto.domain.entity.movies.Movie
 import com.whiz.reto.domain.entity.movies.toModel
 import com.whiz.reto.domain.entity.movies.toModelDB
 import com.whiz.reto.core.network.EventResult
-import com.whiz.reto.repository.MoviesRepository
+import com.whiz.reto.domain.repository.MoviesRepository
 import javax.inject.Inject
 
 class MoviesDataRepository @Inject constructor(
