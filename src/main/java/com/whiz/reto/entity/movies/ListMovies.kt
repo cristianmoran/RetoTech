@@ -13,7 +13,7 @@ data class Movie(
     val name: String, val url: String
 )
 
-fun MovieDB?.toModel() = Movie(
+fun MovieDB?.toModel() :Movie? = Movie(
     name = this?.name.orEmpty(),
     url = this?.url.orEmpty()
 )

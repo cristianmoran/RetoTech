@@ -13,7 +13,7 @@ interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertMovies(movies: List<MovieDB>):  List<Long>
 
-    @Query("SELECT * FROM movies_table")
-    suspend fun getAllMovies(): List<MovieDB>?
+    @Query("SELECT * FROM movies_table LIMIT :limit OFFSET :offset")
+    suspend fun getAllMovies(limit: Int, offset: Int): List<MovieDB>?
 
 }

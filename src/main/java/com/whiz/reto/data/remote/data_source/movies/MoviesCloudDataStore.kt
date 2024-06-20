@@ -7,12 +7,8 @@ import javax.inject.Inject
 
 class MoviesCloudDataStore @Inject constructor(private val moviesService: MoviesService) {
 
-    companion object {
-        const val QUANTITY_MOVIES = 25
-    }
-
-    suspend fun listMovies(page: Int) = withContext(Dispatchers.IO) {
-        moviesService.listMovies(offset = page, limit = QUANTITY_MOVIES)
+    suspend fun listMovies(offset: Int, sizePage: Int) = withContext(Dispatchers.IO) {
+        moviesService.listMovies(offset = offset, limit = sizePage)
     }
 
 }
