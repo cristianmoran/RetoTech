@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="20dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:textColor="@android:color/white"
+        app:textColor="@android:color/black"
         app:backgroundColor="@android:color/holo_blue_light" />
 
     <TextView

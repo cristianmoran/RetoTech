@@ -42,7 +42,7 @@ class MovieAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie, clickListener: MovieClickListener) {
-            binding.tvName.text = movie.url
+            binding.tvName.text = movie.name
 
             binding.container.setOnClickListener { clickListener.onClickItem(movie) }
 

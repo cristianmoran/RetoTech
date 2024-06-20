@@ -12,7 +12,7 @@ data class ListMovies(
 )
 
 data class Movie(
-    val name: String, val url: String
+    val name: String, val url: String, val isFavorite:Boolean = false
 ) {
     val id: Int
         get() {

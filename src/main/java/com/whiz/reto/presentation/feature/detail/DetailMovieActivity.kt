@@ -62,7 +62,7 @@ class DetailMovieActivity : BaseActivity() {
     private fun setupView(detailMovie: DetailMovie?) {
         detailMovie?.let {
             if (it.id == 0) {
-                showMessageSnack("No tienes conexion a internet")
+                showMessageSnack("No tienes conexion a internet, ni data local de este pokemon")
             } else {
                 binding.tvName.text = it.name
                 binding.customImageView.setImage(it.sprites?.backDefault, it.name)
