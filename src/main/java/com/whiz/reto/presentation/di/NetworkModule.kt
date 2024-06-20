@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.pm.PackageManager
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.GsonBuilder
-import com.whiz.domain.network.MyCallAdapterFactory
-import com.whiz.data.local.preferences.PreferenceManager
 import com.whiz.reto.BuildConfig
 import com.whiz.reto.BuildConfig.URL_POKEMON
+import com.whiz.reto.data.local.preferences.PreferenceManager
+import com.whiz.reto.network.MyCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,8 +1,8 @@
 package com.whiz.reto.usecase
 
-import com.whiz.domain.entity.movies.ListMovies
-import com.whiz.domain.network.EventResult
-import com.whiz.domain.repository.MoviesRepository
+import com.whiz.reto.entity.movies.ListMovies
+import com.whiz.reto.network.EventResult
+import com.whiz.reto.repository.MoviesRepository
 import javax.inject.Inject
 
 class ListMoviesUseCase @Inject constructor(private val moviesRepository: MoviesRepository) {

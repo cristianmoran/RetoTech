@@ -1,7 +1,7 @@
 package com.whiz.reto.repository
 
-import com.whiz.domain.network.EventResult
-import com.whiz.domain.entity.movies.ListMovies
+import com.whiz.reto.entity.movies.ListMovies
+import com.whiz.reto.network.EventResult
 
 interface MoviesRepository {
 

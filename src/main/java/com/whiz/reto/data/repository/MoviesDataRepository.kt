@@ -1,11 +1,11 @@
 package com.whiz.reto.data.repository
 
-import com.whiz.domain.network.EventResult
-import com.whiz.data.base.BaseDataRepository
-import com.whiz.data.remote.data_source.movies.MoviesCloudDataStore
-import com.whiz.data.remote.entity.movies.toModel
-import com.whiz.domain.entity.movies.ListMovies
-import com.whiz.domain.repository.MoviesRepository
+import com.whiz.reto.data.base.BaseDataRepository
+import com.whiz.reto.data.remote.data_source.movies.MoviesCloudDataStore
+import com.whiz.reto.data.remote.entity.movies.toModel
+import com.whiz.reto.entity.movies.ListMovies
+import com.whiz.reto.network.EventResult
+import com.whiz.reto.repository.MoviesRepository
 import javax.inject.Inject
 
 class MoviesDataRepository @Inject constructor(

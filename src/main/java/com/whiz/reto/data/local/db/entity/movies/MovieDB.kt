@@ -3,7 +3,7 @@ package com.whiz.data.local.db.entity.movies
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.whiz.data.remote.entity.movies.MovieResponse
+import com.whiz.reto.data.remote.entity.movies.MovieResponse
 
 @Entity(tableName = "movies_table")
 data class MovieDB(

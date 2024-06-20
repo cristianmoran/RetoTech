@@ -3,8 +3,8 @@ package com.whiz.reto.presentation.di
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.whiz.data.local.db.AppDataBase
-import com.whiz.core.DB_NAME
+import com.whiz.reto.core.DB_NAME
+import com.whiz.reto.data.local.db.AppDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

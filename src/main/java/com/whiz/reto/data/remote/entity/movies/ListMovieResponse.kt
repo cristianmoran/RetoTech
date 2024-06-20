@@ -1,8 +1,8 @@
 package com.whiz.reto.data.remote.entity.movies
 
 import com.google.gson.annotations.SerializedName
-import com.whiz.domain.entity.movies.ListMovies
-import com.whiz.domain.entity.movies.Movie
+import com.whiz.reto.entity.movies.ListMovies
+import com.whiz.reto.entity.movies.Movie
 
 data class ListMoviesResponse(
     @SerializedName("count")

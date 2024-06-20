@@ -2,12 +2,16 @@ package com.whiz.reto.network
 
 import android.content.Context
 import com.google.gson.GsonBuilder
-import com.whiz.domain.util.isAirplaneModeActive
-import com.whiz.domain.util.isConnected
-import com.whiz.domain.entity.ErrorRetrofitType
+import com.whiz.reto.entity.ErrorRetrofitType
+import com.whiz.reto.util.isAirplaneModeActive
+import com.whiz.reto.util.isConnected
 import okhttp3.Request
 import okio.Timeout
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.CallAdapter
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
