@@ -65,7 +65,7 @@ class DetailMovieActivity : BaseActivity() {
                 showMessageSnack("No tienes conexion a internet")
             } else {
                 binding.tvName.text = it.name
-
+                binding.customImageView.setImage(it.sprites?.backDefault, it.name)
             }
         }
     }

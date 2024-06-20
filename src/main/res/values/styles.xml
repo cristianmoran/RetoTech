@@ -9,4 +9,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <declare-styleable name="CustomImageView">
+        <attr name="placeholder" format="reference" />
+        <attr name="textColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+
 </resources>

@@ -8,6 +8,7 @@
     <color name="gray">#2C2F34</color>
 
     <color name="colorPrimary">#FF993B</color>
+    <color name="background_detail">#CACACA</color>
     <color name="transparent">#00000000</color>
 
 </resources>

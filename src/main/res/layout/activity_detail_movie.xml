@@ -3,14 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/background_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.feature.detail.DetailMovieActivity">
 
+    <com.whiz.reto.core.components.CustomImageView
+        android:id="@+id/customImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:placeholder="@drawable/ic_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textColor="@android:color/white"
+        app:backgroundColor="@android:color/holo_blue_light" />
+
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/customImageView"
+        app:layout_constraintTop_toTopOf="@id/customImageView"
+        app:layout_constraintBottom_toBottomOf="@id/customImageView"
         tools:text="TextView"
         tools:layout_editor_absoluteX="150dp"
         tools:layout_editor_absoluteY="76dp" />
