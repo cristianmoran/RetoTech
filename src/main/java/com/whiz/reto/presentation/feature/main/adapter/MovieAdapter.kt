@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.whiz.reto.databinding.AdapterMovieBinding
 import com.whiz.reto.databinding.ItemSeeMorePedidoBinding
-import com.whiz.reto.entity.movies.Movie
+import com.whiz.reto.domain.entity.movies.Movie
 
 class MovieAdapter(
     private val clickListener: MovieClickListener

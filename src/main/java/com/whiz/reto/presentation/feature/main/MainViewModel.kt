@@ -6,8 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.whiz.reto.core.BaseViewModel
 import com.whiz.reto.core.uimodel.UiLoadState
 import com.whiz.reto.domain.usecase.ListMoviesUseCase
-import com.whiz.reto.entity.movies.ListMovies
-import com.whiz.reto.entity.movies.Movie
+import com.whiz.reto.domain.entity.movies.ListMovies
+import com.whiz.reto.domain.entity.movies.Movie
+import com.whiz.reto.domain.usecase.GetMovieDetailUseCase
 import com.whiz.reto.network.EventResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val listMoviesUseCase: ListMoviesUseCase
+    private val listMoviesUseCase: ListMoviesUseCase,
+    private val detailUseCase: GetMovieDetailUseCase
 ) : BaseViewModel() {
 
     private var idStop = String()
@@ -37,6 +39,8 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             loadingStateLivaData.postValue(UiLoadState.Loading)
             val offset = SIZE_PAGE * pageNumber
+
+            detailUseCase.execute(2,isConnected)
             when (val response = listMoviesUseCase.execute(offset, SIZE_PAGE, isConnected)) {
                 is EventResult.Success -> managementListMovies(response)
                 is EventResult.Failure -> {

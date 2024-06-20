@@ -1,6 +1,6 @@
-package com.whiz.reto.entity.movies
+package com.whiz.reto.domain.entity.movies
 
-import com.whiz.data.local.db.entity.movies.MovieDB
+import com.whiz.reto.data.local.db.entity.movies.MovieDB
 
 data class ListMovies(
     var count: Int,
@@ -13,7 +13,7 @@ data class Movie(
     val name: String, val url: String
 )
 
-fun MovieDB?.toModel() :Movie? = Movie(
+fun MovieDB?.toModel() : Movie = Movie(
     name = this?.name.orEmpty(),
     url = this?.url.orEmpty()
 )

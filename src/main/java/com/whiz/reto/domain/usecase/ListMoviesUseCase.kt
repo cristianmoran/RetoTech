@@ -1,6 +1,6 @@
 package com.whiz.reto.domain.usecase
 
-import com.whiz.reto.entity.movies.ListMovies
+import com.whiz.reto.domain.entity.movies.ListMovies
 import com.whiz.reto.network.EventResult
 import com.whiz.reto.repository.MoviesRepository
 import javax.inject.Inject

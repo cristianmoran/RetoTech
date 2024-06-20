@@ -1,4 +1,4 @@
-package com.whiz.reto.entity
+package com.whiz.reto.domain.entity
 
 enum class ErrorRetrofitType(){
     AIRPLANE_ACTIVE,

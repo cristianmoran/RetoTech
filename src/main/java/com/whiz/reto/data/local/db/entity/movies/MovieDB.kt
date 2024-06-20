@@ -1,10 +1,10 @@
-package com.whiz.data.local.db.entity.movies
+package com.whiz.reto.data.local.db.entity.movies
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.whiz.reto.entity.movies.Movie
+import com.whiz.reto.domain.entity.movies.Movie
 
 @Entity(
     tableName = "movies_table",
@@ -20,8 +20,4 @@ data class MovieDB(
     val url: String
 )
 
-fun MovieDB?.toDB() = Movie(
-    name = this?.name.orEmpty(),
-    url = this?.url.orEmpty()
-)
 

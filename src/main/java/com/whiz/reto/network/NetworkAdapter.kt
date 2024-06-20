@@ -2,7 +2,7 @@ package com.whiz.reto.network
 
 import android.content.Context
 import com.google.gson.GsonBuilder
-import com.whiz.reto.entity.ErrorRetrofitType
+import com.whiz.reto.domain.entity.ErrorRetrofitType
 import com.whiz.reto.util.isAirplaneModeActive
 import com.whiz.reto.util.isConnectedRed
 import okhttp3.Request

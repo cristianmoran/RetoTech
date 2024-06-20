@@ -11,4 +11,8 @@ class MoviesCloudDataStore @Inject constructor(private val moviesService: Movies
         moviesService.listMovies(offset = offset, limit = sizePage)
     }
 
+    suspend fun detailMovie(id: Int) = withContext(Dispatchers.IO) {
+        moviesService.detailMovie(id)
+    }
+
 }

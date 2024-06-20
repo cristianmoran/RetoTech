@@ -28,5 +28,8 @@ object LocalModule {
     @Provides
     fun provideMoviesDao(db: AppDataBase) = db.moviesDao()
 
+    @Singleton
+    @Provides
+    fun provideMovieDetailDao(db: AppDataBase) = db.movieDetailDao()
 
 }
