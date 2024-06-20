@@ -1,34 +1,112 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+
 android {
+    def appName = "RetoTech"
     namespace 'com.whiz.reto'
     compileSdk 34
 
     defaultConfig {
         applicationId "com.whiz.reto"
-        minSdk 24
+        minSdk 23
         targetSdk 34
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    packaging {
+        resources {
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
+
+    variantFilter { variant ->
+        if (variant.buildType.name == 'debug' || variant.buildType.name == 'release')
+            setIgnore(true)
+    }
+
+    signingConfigs {
+        dev {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+
+        prod {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        dev {
+            versionNameSuffix ".6"
+            signingConfig signingConfigs.dev
+            debuggable true
+            manifestPlaceholders = [marca_prefix: "${appName}", build_prefix: 'DEV']
+            applicationIdSuffix ".dev"
+
+            buildConfigField "String", "URL_POKEMON", URL_POKEMON_DEV
+            resValue "string", "google_maps_key", "AIzaSyDkKsJPlFFDo-rRgeuBEEUP0JN0U_nt5fc"
+
+            minifyEnabled false
+        }
+
+        prod {
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.prod
+            debuggable false
+            manifestPlaceholders = [marca_prefix: "${appName}", build_prefix: '']
+            buildConfigField "String", "URL_POKEMON", URL_POKEMON_PROD
+            resValue "string", "google_maps_key", "AIzaSyDkKsJPlFFDo-rRgeuBEEUP0JN0U_nt5fc"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    kapt {
+        javacOptions {
+            // These options are normally set automatically via the Hilt Gradle plugin, but we
+            // set them manually to workaround a bug in the Kotlin 1.5.20
+            option("-Adagger.fastInit=ENABLED")
+            option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+        }
     }
 }
 
@@ -39,6 +117,16 @@ dependencies {
     implementation libs.material
     implementation libs.androidx.activity
     implementation libs.androidx.constraintlayout
+
+    implementation libs.hdodenhof
+
+    implementation libs.retrofit
+    implementation libs.okhttp3
+    implementation libs.hilt
+    implementation libs.hiltCompiler
+    implementation libs.chucker
+    implementation libs.crypto
+
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
