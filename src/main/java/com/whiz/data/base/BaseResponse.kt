@@ -1,4 +1,4 @@
-package com.whiz.data.entity
+package com.whiz.data.base
 
 import com.google.gson.annotations.SerializedName
 

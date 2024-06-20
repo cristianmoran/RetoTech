@@ -2,8 +2,8 @@ package com.whiz.data.repository
 
 import com.whiz.domain.network.EventResult
 import com.whiz.data.base.BaseDataRepository
-import com.whiz.data.data_source.movies.MoviesCloudDataStore
-import com.whiz.data.entity.movies.toModel
+import com.whiz.data.remote.data_source.movies.MoviesCloudDataStore
+import com.whiz.data.remote.entity.movies.toModel
 import com.whiz.domain.entity.movies.ListMovies
 import com.whiz.domain.repository.MoviesRepository
 import javax.inject.Inject

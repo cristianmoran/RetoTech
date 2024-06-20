@@ -2,7 +2,7 @@ package com.whiz.presentation.di
 
 import android.app.Application
 import android.content.Context
-import com.whiz.data.data_source.movies.service.MoviesService
+import com.whiz.data.remote.service.MoviesService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

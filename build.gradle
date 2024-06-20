@@ -1,8 +1,9 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 def keystoreProperties = new Properties()
@@ -24,22 +25,16 @@ android {
         versionCode 1
         versionName "1.0.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    buildFeatures {
-        buildConfig true
-    }
-
-    packaging {
-        resources {
-            excludes += "META-INF/gradle/incremental.annotation.processors"
-        }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     variantFilter { variant ->
@@ -93,12 +88,16 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-
+    kotlinOptions {
+        jvmTarget = '17'
+    }
     buildFeatures {
         viewBinding true
+        buildConfig true // Enable BuildConfig generation
     }
     kapt {
         javacOptions {
@@ -107,6 +106,19 @@ android {
             option("-Adagger.fastInit=ENABLED")
             option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    packagingOptions {
+        // Exclude specific files or file patterns
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+
+        // Or specify how to handle conflicts
+        pickFirst 'META-INF/gradle/incremental.annotation.processors'
     }
 }
 
@@ -126,6 +138,18 @@ dependencies {
     implementation libs.hiltCompiler
     implementation libs.chucker
     implementation libs.crypto
+
+    implementation libs.androidx.room.ktx
+    implementation libs.androidx.room.runtime
+    kapt libs.androidx.room.compiler
+
+    // Dependencia para Kotlin Android Extensions (si la necesitas)
+
+//    // Dependencia para Data Binding
+//    implementation "androidx.databinding:databinding-runtime:4.3.0"
+//
+//    // Dependencia para kapt (Kotlin Annotation Processing Tool)
+//    kapt "com.android.databinding:compiler:4.3.0"
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit

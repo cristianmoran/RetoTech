@@ -1,6 +1,6 @@
-package com.whiz.data.data_source.movies
+package com.whiz.data.remote.data_source.movies
 
-import com.whiz.data.data_source.movies.service.MoviesService
+import com.whiz.data.remote.service.MoviesService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

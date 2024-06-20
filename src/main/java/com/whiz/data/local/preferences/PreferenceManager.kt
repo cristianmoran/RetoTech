@@ -1,4 +1,4 @@
-package com.whiz.domain.preferences
+package com.whiz.data.local.preferences
 
 import android.content.Context
 import android.content.SharedPreferences

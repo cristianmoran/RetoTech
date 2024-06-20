@@ -1,7 +1,7 @@
-package com.whiz.data.data_source.movies.service
+package com.whiz.data.remote.service
 
 import com.whiz.domain.network.EventResult
-import com.whiz.data.entity.movies.ListMoviesResponse
+import com.whiz.data.remote.entity.movies.ListMoviesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

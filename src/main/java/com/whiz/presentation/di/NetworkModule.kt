@@ -5,7 +5,7 @@ import android.content.pm.PackageManager
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.GsonBuilder
 import com.whiz.domain.network.MyCallAdapterFactory
-import com.whiz.domain.preferences.PreferenceManager
+import com.whiz.data.local.preferences.PreferenceManager
 import com.whiz.reto.BuildConfig
 import com.whiz.reto.BuildConfig.URL_POKEMON
 import dagger.Module

@@ -1,4 +1,4 @@
-package com.whiz.data.entity.movies
+package com.whiz.data.remote.entity.movies
 
 import com.google.gson.annotations.SerializedName
 import com.whiz.domain.entity.movies.ListMovies
