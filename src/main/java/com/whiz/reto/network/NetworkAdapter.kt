@@ -4,7 +4,7 @@ import android.content.Context
 import com.google.gson.GsonBuilder
 import com.whiz.reto.entity.ErrorRetrofitType
 import com.whiz.reto.util.isAirplaneModeActive
-import com.whiz.reto.util.isConnected
+import com.whiz.reto.util.isConnectedRed
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
@@ -88,9 +88,9 @@ class ResultCall<T>(proxy: Call<T>, val context: Context) : CallDelegate<T, Even
         code: Int = 0,
         responseError: ErrorResponse? = null
     ): EventResult.Failure {
-        return if (context.isAirplaneModeActive()) {
+        return if (isAirplaneModeActive(context)) {
             EventResult.Failure(ErrorRetrofitType.AIRPLANE_ACTIVE, responseError)
-        } else if (!context.isConnected()) {
+        } else if (!isConnectedRed(context)) {
             EventResult.Failure(ErrorRetrofitType.NETWORK_EXCEPTION, responseError)
         } else if (code == 401) {
             EventResult.Failure(ErrorRetrofitType.UNAUTHORIZED, responseError)

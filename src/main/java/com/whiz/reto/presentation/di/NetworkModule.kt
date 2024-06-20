@@ -18,6 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
+import java.net.URL
 import java.security.KeyManagementException
 import java.security.KeyStore
 import java.security.KeyStoreException
@@ -109,7 +110,7 @@ class NetworkModule {
         gsonConverterFactory: GsonConverterFactory, okHttpClient: OkHttpClient, context: Context
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(URL_POKEMON)
+            .baseUrl(URL(URL_POKEMON) )
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory) // Serialize Objects
             .addCallAdapterFactory(MyCallAdapterFactory(context)) //Set call to return {@link Observable}

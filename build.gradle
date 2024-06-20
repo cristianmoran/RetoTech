@@ -143,13 +143,12 @@ dependencies {
     implementation libs.androidx.room.runtime
     kapt libs.androidx.room.compiler
 
-    // Dependencia para Kotlin Android Extensions (si la necesitas)
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.extensions
 
-//    // Dependencia para Data Binding
-//    implementation "androidx.databinding:databinding-runtime:4.3.0"
-//
-//    // Dependencia para kapt (Kotlin Annotation Processing Tool)
-//    kapt "com.android.databinding:compiler:4.3.0"
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment.ktx
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit

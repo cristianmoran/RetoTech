@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class ListMoviesUseCase @Inject constructor(private val moviesRepository: MoviesRepository) {
 
-    suspend fun execute(page: Int, isOnline: Boolean): EventResult<ListMovies> {
+    suspend fun execute(page: Int): EventResult<ListMovies> {
         return moviesRepository.listMoviesRemote(page)
     }
 
