@@ -117,8 +117,8 @@ abstract class CallDelegate<TIn, TOut>(
 }
 
 data class ErrorResponse(
-    val Status: String? = null,
-    val Type: String? = null,
-    val Title: String? = null,
-    val Detail: String? = null
+    val apiEstado: String?,
+    val apiMensaje: String?,
+    val title: String?,
+    val detail: String?
 )

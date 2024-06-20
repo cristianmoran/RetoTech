@@ -8,11 +8,11 @@ import javax.inject.Inject
 
 class GetMovieDetailUseCase @Inject constructor(private val moviesRepository: MoviesRepository) {
 
-    suspend fun execute(id: Int, isConnected: Boolean): EventResult<DetailMovie> {
+    suspend fun execute(id: Int, isConnected: Boolean): EventResult<DetailMovie?> {
         return if(isConnected){
             moviesRepository.detailMovieRemote(id)
         }else{
-            moviesRepository.detailMovieRemote(id)
+            moviesRepository.detailMovieLocal(id)
         }
 
     }

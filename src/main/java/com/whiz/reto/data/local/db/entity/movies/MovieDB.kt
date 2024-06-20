@@ -13,7 +13,7 @@ import com.whiz.reto.domain.entity.movies.Movie
 data class MovieDB(
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Int? = null,
+    val id: Int,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "url")

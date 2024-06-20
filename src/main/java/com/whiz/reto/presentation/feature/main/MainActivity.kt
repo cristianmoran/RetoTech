@@ -2,20 +2,23 @@ package com.whiz.reto.presentation.feature.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import com.whiz.reto.core.BaseActivity
 import com.whiz.reto.databinding.ActivityMainBinding
+import com.whiz.reto.presentation.feature.detail.DetailMovieActivity
 import com.whiz.reto.presentation.feature.main.adapter.MovieAdapter
 import com.whiz.reto.util.isConnected
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
     private var adapter = MovieAdapter(MovieAdapter.MovieClickListener(
-        onClick = { _ ->
+        onClick = { movie ->
+            val intent = DetailMovieActivity.newInstance(this@MainActivity, movie.id)
+            startActivity(intent)
         },
         onSeeMore = {
             viewModel.loadMoreMovies(this.isConnected())
@@ -33,10 +36,19 @@ class MainActivity : AppCompatActivity() {
         viewModel.loadMoreMovies(this.isConnected())
     }
 
-    private fun initObserver() {
+    override fun initObserver() {
         viewModel.moviesLiveData.observe(this) {
             adapter.submitList(it)
         }
+
+        viewModel.loadingStateLivaData.observe(this) {
+            handleVisibilityProgressLoadStates(it)
+        }
+
+        viewModel.mutableException.observe(this) {
+            validateException(it)
+        }
+
     }
 
     private fun initRvMovies() {

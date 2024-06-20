@@ -9,8 +9,11 @@ interface MoviesRepository {
 
     suspend fun listMoviesRemote(page: Int, sizePage: Int): EventResult<ListMovies>
 
+    suspend fun listMoviesLocal(limit: Int, offset: Int): EventResult<ListMovies>
+
     suspend fun detailMovieRemote(id: Int): EventResult<DetailMovie>
 
-    suspend fun listMoviesLocal(limit: Int, offset: Int): EventResult<ListMovies>
+    suspend fun detailMovieLocal(id: Int): EventResult<DetailMovie?>
+
 
 }

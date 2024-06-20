@@ -13,4 +13,8 @@ abstract class BaseViewModel() : ViewModel() {
     internal val loadingStateLivaData = SingleLiveEvent<UiLoadState>()
     internal var mutableException = SingleLiveEvent<EventResult.Failure>()
 
+    fun managementException(response: EventResult.Failure) {
+        mutableException.postValue(response)
+    }
+
 }

@@ -33,6 +33,18 @@ class MoviesDataRepository @Inject constructor(
         }
     }
 
+    override suspend fun listMoviesLocal(limit: Int, offset: Int): EventResult<ListMovies> {
+        val sizeTotal = moviesDao.getSizeTotalMovies()
+        val listMovies = moviesDao.getAllMovies(limit, offset)
+        val data = ListMovies(
+            count = sizeTotal,
+            next = String(),
+            previous = String(),
+            results = listMovies?.map { it.toModel() }.orEmpty()
+        )
+        return EventResult.Success(data)
+    }
+
     override suspend fun detailMovieRemote(id: Int): EventResult<DetailMovie> {
         return when (val response = notificationCloudDataStore.detailMovie(id)) {
             is EventResult.Success -> {
@@ -45,16 +57,9 @@ class MoviesDataRepository @Inject constructor(
         }
     }
 
-    override suspend fun listMoviesLocal(limit: Int, offset: Int): EventResult<ListMovies> {
-        val sizeTotal = moviesDao.getSizeTotalMovies()
-        val listMovies = moviesDao.getAllMovies(limit, offset)
-        val data = ListMovies(
-            count = sizeTotal,
-            next = String(),
-            previous = String(),
-            results = listMovies?.map { it.toModel() }.orEmpty()
-        )
-        return EventResult.Success(data)
+    override suspend fun detailMovieLocal(id: Int): EventResult<DetailMovie?> {
+        val detailMovie = movieDetailDao.getDetailMovie(id)
+        return EventResult.Success(detailMovie.toModel())
     }
 
     private suspend fun insertMoviesLocal(movies: List<Movie>) {

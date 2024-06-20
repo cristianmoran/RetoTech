@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.whiz.reto.core.BaseViewModel
 import com.whiz.reto.core.uimodel.UiLoadState
-import com.whiz.reto.domain.usecase.ListMoviesUseCase
 import com.whiz.reto.domain.entity.movies.ListMovies
 import com.whiz.reto.domain.entity.movies.Movie
-import com.whiz.reto.domain.usecase.GetMovieDetailUseCase
+import com.whiz.reto.domain.usecase.ListMoviesUseCase
 import com.whiz.reto.network.EventResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,17 +15,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val listMoviesUseCase: ListMoviesUseCase,
-    private val detailUseCase: GetMovieDetailUseCase
+    private val listMoviesUseCase: ListMoviesUseCase
 ) : BaseViewModel() {
-
-    private var idStop = String()
-    private var idClient = String()
-    private var idStorage = String()
 
     companion object {
         const val SIZE_PAGE = 25
-
     }
 
     private val _moviesLiveData: MutableLiveData<List<Movie?>> = MutableLiveData()
@@ -40,13 +33,9 @@ class MainViewModel @Inject constructor(
             loadingStateLivaData.postValue(UiLoadState.Loading)
             val offset = SIZE_PAGE * pageNumber
 
-            detailUseCase.execute(2,isConnected)
             when (val response = listMoviesUseCase.execute(offset, SIZE_PAGE, isConnected)) {
                 is EventResult.Success -> managementListMovies(response)
-                is EventResult.Failure -> {
-
-                }
-
+                is EventResult.Failure -> managementException(response)
             }
             loadingStateLivaData.postValue(UiLoadState.Finished)
         }

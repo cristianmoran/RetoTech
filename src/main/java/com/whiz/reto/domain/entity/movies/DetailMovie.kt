@@ -27,13 +27,13 @@ data class DetailMovie(
     ) : Parcelable
 }
 
-fun DetailMovieWithTypesDB.toModel() = DetailMovie(
-    id = this.detailMovie.id ?: 0,
-    name = this.detailMovie.name,
-    sprites = this.detailMovie.sprites?.toModel(),
-    height = this.detailMovie.height,
-    weight = this.detailMovie.weight,
-    types = this.types.map { it.toModel() }
+fun DetailMovieWithTypesDB?.toModel() = DetailMovie(
+    id = this?.detailMovie?.id ?: 0,
+    name = this?.detailMovie?.name.orEmpty(),
+    sprites = this?.detailMovie?.sprites?.toModel(),
+    height = this?.detailMovie?.height?:0,
+    weight = this?.detailMovie?.weight?:0,
+    types = this?.types?.map { it.toModel() }.orEmpty()
 )
 
 fun DetailMovieDB.Sprites?.toModel() = DetailMovie.Sprites(
