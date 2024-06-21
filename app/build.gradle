@@ -1,0 +1,154 @@
+plugins {
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+
+android {
+    def appName = "RetoTech"
+    namespace 'com.whiz.reto'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.whiz.reto"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    variantFilter { variant ->
+        if (variant.buildType.name == 'debug' || variant.buildType.name == 'release')
+            setIgnore(true)
+    }
+
+    signingConfigs {
+        dev {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+
+        prod {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        dev {
+            versionNameSuffix ".6"
+            signingConfig signingConfigs.dev
+            debuggable true
+            manifestPlaceholders = [marca_prefix: "${appName}", build_prefix: 'DEV']
+            applicationIdSuffix ".dev"
+
+            buildConfigField "String", "URL_POKEMON", URL_POKEMON_DEV
+            resValue "string", "google_maps_key", "AIzaSyDkKsJPlFFDo-rRgeuBEEUP0JN0U_nt5fc"
+
+            minifyEnabled false
+        }
+
+        prod {
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.prod
+            debuggable false
+            manifestPlaceholders = [marca_prefix: "${appName}", build_prefix: '']
+            buildConfigField "String", "URL_POKEMON", URL_POKEMON_PROD
+            resValue "string", "google_maps_key", "AIzaSyDkKsJPlFFDo-rRgeuBEEUP0JN0U_nt5fc"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true // Enable BuildConfig generation
+    }
+    kapt {
+        javacOptions {
+            // These options are normally set automatically via the Hilt Gradle plugin, but we
+            // set them manually to workaround a bug in the Kotlin 1.5.20
+            option("-Adagger.fastInit=ENABLED")
+            option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    packagingOptions {
+        // Exclude specific files or file patterns
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+
+        // Or specify how to handle conflicts
+        pickFirst 'META-INF/gradle/incremental.annotation.processors'
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    implementation project(':mylocations')
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+
+    implementation libs.hdodenhof
+
+    implementation libs.retrofit
+    implementation libs.okhttp3
+    implementation libs.hilt
+    implementation libs.hiltCompiler
+    implementation libs.chucker
+    implementation libs.crypto
+
+    implementation libs.androidx.room.ktx
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+    kapt libs.androidx.room.compiler
+
+    implementation libs.glide
+
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.extensions
+
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment.ktx
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}

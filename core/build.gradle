@@ -1,0 +1,79 @@
+plugins {
+    id('com.android.library')
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+}
+
+android {
+    namespace 'com.whiz.core'
+    compileSdk 34
+
+    defaultConfig {
+        minSdkVersion 23
+        multiDexEnabled true
+    }
+
+    variantFilter { variant ->
+        if (variant.buildType.name == 'debug' || variant.buildType.name == 'release')
+            setIgnore(true)
+    }
+
+    buildTypes {
+        dev {
+            versionNameSuffix ".6"
+            debuggable true
+            buildConfigField "String", "URL_POKEMON", URL_POKEMON_DEV
+            minifyEnabled false
+        }
+
+        prod {
+
+            minifyEnabled false
+            shrinkResources false
+            debuggable false
+            buildConfigField "String", "URL_POKEMON", URL_POKEMON_PROD
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true // Enable BuildConfig generation
+    }
+
+    kapt {
+        javacOptions {
+            // These options are normally set automatically via the Hilt Gradle plugin, but we
+            // set them manually to workaround a bug in the Kotlin 1.5.20
+            option("-Adagger.fastInit=ENABLED")
+            option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+
+    implementation libs.hdodenhof
+
+    implementation libs.retrofit
+    implementation libs.okhttp3
+
+    implementation libs.glide
+
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}
