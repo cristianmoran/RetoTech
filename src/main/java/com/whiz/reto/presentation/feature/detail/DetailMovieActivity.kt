@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.whiz.reto.R
 import com.whiz.reto.core.BaseActivity
+import com.whiz.reto.core.extensions.updateImageDrawable
+import com.whiz.reto.core.util.isConnected
 import com.whiz.reto.databinding.ActivityDetailMovieBinding
 import com.whiz.reto.domain.entity.movies.DetailMovie
-import com.whiz.reto.core.util.isConnected
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -66,7 +68,24 @@ class DetailMovieActivity : BaseActivity() {
             } else {
                 binding.tvName.text = it.name
                 binding.customImageView.setImage(it.sprites?.backDefault, it.name)
+                binding.tvHeightValue.text = it.height.toString()
+                binding.tvWeightValue.text = it.weight.toString()
+
+                binding.tvTypesValue.text = it.types.joinToString(separator = "\n") { it.name }
+
+                updateImageFavorite(detailMovie.isFavorite)
+
+                binding.ivFavorite.setOnClickListener {
+                    detailMovie.isFavorite = !detailMovie.isFavorite
+                    updateImageFavorite(detailMovie.isFavorite)
+                }
+
             }
         }
+    }
+
+    private fun updateImageFavorite(isFavorite: Boolean) {
+        val image = if (isFavorite) R.drawable.ic_favorite_fill else R.drawable.ic_favorite_border
+        binding.ivFavorite.updateImageDrawable(image)
     }
 }

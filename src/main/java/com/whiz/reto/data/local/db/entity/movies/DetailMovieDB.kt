@@ -3,6 +3,7 @@ package com.whiz.reto.data.local.db.entity.movies
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "detail_movie")
@@ -24,7 +25,10 @@ data class DetailMovieDB(
         var backDefault: String = String()
     )
 
-    @Entity(tableName = "types")
+    @Entity(
+        tableName = "types",
+        indices = [Index(value = ["name"], unique = true)]
+    )
     data class Types(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "type_id")

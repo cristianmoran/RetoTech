@@ -12,7 +12,8 @@ data class DetailMovie(
     var sprites: Sprites?,
     var height: Int,
     var weight: Int,
-    var types: List<Types>
+    var types: List<Types>,
+    var isFavorite: Boolean = false
 ) : Parcelable {
     @Parcelize
     data class Sprites(

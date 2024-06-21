@@ -10,15 +10,6 @@ fun ImageView.updateImageDrawable(@DrawableRes image: Int) {
     this.setImageDrawable(ContextCompat.getDrawable(this.context, image))
 }
 
-//fun ImageView.updateImageFromGlide(url: String) {
-//    Glide.with(this.context)
-//        .load(url)
-//        .skipMemoryCache(true)
-//        .thumbnail(Glide.with(this.context).load(R.drawable.loading))
-//        .diskCacheStrategy(DiskCacheStrategy.NONE)
-//        .into(this)
-//}
-
 fun ImageView.updateColorTint(@ColorRes color: Int) {
     this.setColorFilter(ContextCompat.getColor(this.context, color))
 }
