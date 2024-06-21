@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.whiz.reto.R
-import com.whiz.reto.core.base.BaseFragment
-import com.whiz.reto.core.util.isConnected
+import com.whiz.core.base.BaseFragment
+import com.whiz.core.util.isConnected
 import com.whiz.reto.databinding.FragmentListMoviesBinding
 import com.whiz.reto.presentation.feature.main.listmovies.adapter.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint

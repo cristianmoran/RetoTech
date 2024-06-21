@@ -1,7 +1,7 @@
 package com.whiz.reto.domain.entity.movies
 
-import com.whiz.reto.core.ID_MOVIE_INVALID
-import com.whiz.reto.core.extensions.notNull
+import com.whiz.core.ID_MOVIE_INVALID
+import com.whiz.core.extensions.notNull
 import com.whiz.reto.data.local.db.entity.movies.MovieDB
 
 data class ListMovies(
@@ -19,9 +19,9 @@ data class Movie(
             return try {
                 val regex = """.*/pokemon/(\d+)/""".toRegex()
                 val matchResult = regex.find(url)
-                return matchResult?.groups?.get(1)?.value?.toInt() ?: ID_MOVIE_INVALID
+                return matchResult?.groups?.get(1)?.value?.toInt() ?: com.whiz.core.ID_MOVIE_INVALID
             } catch (e: Exception) {
-                ID_MOVIE_INVALID
+                com.whiz.core.ID_MOVIE_INVALID
             }
 
         }

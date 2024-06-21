@@ -3,11 +3,11 @@ package com.whiz.reto.presentation.feature.main.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.whiz.reto.core.base.BaseViewModel
-import com.whiz.reto.core.uimodel.UiLoadState
+import com.whiz.core.base.BaseViewModel
+import com.whiz.core.uimodel.UiLoadState
 import com.whiz.reto.domain.entity.movies.DetailMovie
 import com.whiz.reto.domain.usecase.GetMovieDetailUseCase
-import com.whiz.reto.core.network.EventResult
+import com.whiz.core.network.EventResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailMovieViewModel @Inject constructor(
     private val detailUseCase: GetMovieDetailUseCase
-) : BaseViewModel() {
+) : com.whiz.core.base.BaseViewModel() {
 
 
     companion object {
@@ -27,13 +27,13 @@ class DetailMovieViewModel @Inject constructor(
 
     fun getMovieDetail(id: Int, isConnected: Boolean) {
         viewModelScope.launch {
-            loadingStateLivaData.postValue(UiLoadState.Loading)
+            loadingStateLivaData.postValue(com.whiz.core.uimodel.UiLoadState.Loading)
 
             when (val response = detailUseCase.execute(id, isConnected)) {
-                is EventResult.Success -> managementMovieDetail(response.data)
-                is EventResult.Failure -> managementException(response)
+                is com.whiz.core.network.EventResult.Success -> managementMovieDetail(response.data)
+                is com.whiz.core.network.EventResult.Failure -> managementException(response)
             }
-            loadingStateLivaData.postValue(UiLoadState.Finished)
+            loadingStateLivaData.postValue(com.whiz.core.uimodel.UiLoadState.Finished)
         }
     }
 

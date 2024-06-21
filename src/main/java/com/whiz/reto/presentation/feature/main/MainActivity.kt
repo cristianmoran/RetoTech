@@ -1,13 +1,12 @@
 package com.whiz.reto.presentation.feature.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.whiz.reto.core.base.BaseActivity
+import com.whiz.core.base.BaseActivity
 import com.whiz.reto.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class MainActivity :  BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

@@ -5,10 +5,9 @@
     android:id="@+id/main"
     android:background="@color/background_detail"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.feature.main.detail.DetailMovieActivity">
+    android:layout_height="match_parent">
 
-    <com.whiz.reto.core.components.CustomImageView
+    <com.whiz.core.components.CustomImageView
         android:id="@+id/customImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"

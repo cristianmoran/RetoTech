@@ -1,7 +1,5 @@
 package com.whiz.reto.presentation.feature.main.detail
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +7,16 @@ import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.whiz.reto.R
-import com.whiz.reto.core.base.BaseActivity
-import com.whiz.reto.core.base.BaseFragment
-import com.whiz.reto.core.extensions.updateImageDrawable
-import com.whiz.reto.core.util.isConnected
+import com.whiz.core.base.BaseFragment
+import com.whiz.core.extensions.updateImageDrawable
+import com.whiz.core.util.isConnected
 import com.whiz.reto.databinding.FragmentDetailMovieBinding
 import com.whiz.reto.domain.entity.movies.DetailMovie
 import com.whiz.reto.presentation.feature.main.listmovies.ListMoviesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailMovieFragment : BaseFragment() {
+class DetailMovieFragment : com.whiz.core.base.BaseFragment() {
 
     private val viewModel: DetailMovieViewModel by viewModels()
     private lateinit var binding: FragmentDetailMovieBinding

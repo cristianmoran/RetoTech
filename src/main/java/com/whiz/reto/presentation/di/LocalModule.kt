@@ -3,7 +3,7 @@ package com.whiz.reto.presentation.di
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.whiz.reto.core.DB_NAME
+import com.whiz.core.DB_NAME
 import com.whiz.reto.data.local.db.AppDataBase
 import dagger.Module
 import dagger.Provides
@@ -21,7 +21,7 @@ object LocalModule {
     @Singleton
     @Provides
     fun provideRoom(@ApplicationContext context: Context) =
-        Room.databaseBuilder(context, AppDataBase::class.java, DB_NAME).allowMainThreadQueries()
+        Room.databaseBuilder(context, AppDataBase::class.java, com.whiz.core.DB_NAME).allowMainThreadQueries()
             .setJournalMode(RoomDatabase.JournalMode.TRUNCATE).build()
 
     @Singleton

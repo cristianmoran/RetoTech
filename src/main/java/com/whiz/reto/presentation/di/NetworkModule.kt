@@ -7,7 +7,7 @@ import com.google.gson.GsonBuilder
 import com.whiz.reto.BuildConfig
 import com.whiz.reto.BuildConfig.URL_POKEMON
 import com.whiz.reto.data.local.preferences.PreferenceManager
-import com.whiz.reto.core.network.MyCallAdapterFactory
+import com.whiz.core.network.MyCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -113,7 +113,7 @@ class NetworkModule {
             .baseUrl(URL(URL_POKEMON) )
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory) // Serialize Objects
-            .addCallAdapterFactory(MyCallAdapterFactory(context)) //Set call to return {@link Observable}
+            .addCallAdapterFactory(com.whiz.core.network.MyCallAdapterFactory(context)) //Set call to return {@link Observable}
             .build()
     }
 

@@ -1,12 +1,12 @@
 package com.whiz.reto.data.base
 
-import com.whiz.reto.core.network.EventResult
+import com.whiz.core.network.EventResult
 
 
 abstract class BaseDataRepository {
 
-    fun <T> generateResponseError(failure: EventResult.Failure): EventResult<T> {
-        return  EventResult.Failure(
+    fun <T> generateResponseError(failure: com.whiz.core.network.EventResult.Failure): com.whiz.core.network.EventResult<T> {
+        return  com.whiz.core.network.EventResult.Failure(
             type = failure.type,
             responseError = failure.responseError
         )

@@ -3,12 +3,11 @@ package com.whiz.reto.presentation.feature.main.listmovies
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.whiz.reto.core.base.BaseViewModel
-import com.whiz.reto.core.uimodel.UiLoadState
+import com.whiz.core.network.EventResult
+import com.whiz.core.uimodel.UiLoadState
 import com.whiz.reto.domain.entity.movies.ListMovies
 import com.whiz.reto.domain.entity.movies.Movie
 import com.whiz.reto.domain.usecase.ListMoviesUseCase
-import com.whiz.reto.core.network.EventResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ListMoviesViewModel @Inject constructor(
     private val listMoviesUseCase: ListMoviesUseCase
-) : BaseViewModel() {
+) : com.whiz.core.base.BaseViewModel() {
 
     companion object {
         const val SIZE_PAGE = 25
@@ -51,7 +50,7 @@ class ListMoviesViewModel @Inject constructor(
         if (newList.isNotEmpty()) {
             if (pageNumber == 0) currentList.clear()
             currentList.addAll(newList)
-            if (pageNumber < response.data.count) currentList.add(null)
+            if (pageNumber < response.data!!.count) currentList.add(null)
         }
         data = currentList
         _moviesLiveData.value = data
