@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.whiz.reto.R
 import com.whiz.core.base.BaseFragment
 import com.whiz.core.util.isConnected
+import com.whiz.mylocations.LocationActivity
 import com.whiz.reto.databinding.FragmentListMoviesBinding
 import com.whiz.reto.presentation.feature.main.listmovies.adapter.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,6 +51,7 @@ class ListMoviesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initRvMovies()
         initObserver()
+        initOnClick()
         viewModel.loadMoreMovies(requireContext().isConnected())
     }
 
@@ -66,6 +68,12 @@ class ListMoviesFragment : BaseFragment() {
             validateException(it)
         }
 
+    }
+
+    private fun initOnClick(){
+        binding.btnLocation.setOnClickListener {
+            startActivity(LocationActivity.newInstance(requireContext(),null))
+        }
     }
 
     private fun initRvMovies() {
