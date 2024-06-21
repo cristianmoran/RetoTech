@@ -1,4 +1,4 @@
-package com.whiz.reto.core
+package com.whiz.reto.core.base
 
 import android.app.Application
 import com.whiz.reto.data.local.preferences.PreferenceManager

@@ -1,4 +1,4 @@
-package com.whiz.reto.core
+package com.whiz.reto.core.base
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

@@ -1,43 +1,50 @@
-package com.whiz.reto.presentation.feature.detail
+package com.whiz.reto.presentation.feature.main.detail
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import com.whiz.reto.R
-import com.whiz.reto.core.BaseActivity
+import com.whiz.reto.core.base.BaseActivity
+import com.whiz.reto.core.base.BaseFragment
 import com.whiz.reto.core.extensions.updateImageDrawable
 import com.whiz.reto.core.util.isConnected
-import com.whiz.reto.databinding.ActivityDetailMovieBinding
+import com.whiz.reto.databinding.FragmentDetailMovieBinding
 import com.whiz.reto.domain.entity.movies.DetailMovie
+import com.whiz.reto.presentation.feature.main.listmovies.ListMoviesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailMovieActivity : BaseActivity() {
+class DetailMovieFragment : BaseFragment() {
 
     private val viewModel: DetailMovieViewModel by viewModels()
-    private lateinit var binding: ActivityDetailMovieBinding
+    private lateinit var binding: FragmentDetailMovieBinding
 
     private var movieId = 0
 
-    companion object {
-        fun newInstance(context: Context, movieId: Int): Intent {
-            return Intent(context, DetailMovieActivity::class.java).apply {
-                putExtra(MOVIE_ID, movieId)
-            }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentDetailMovieBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        arguments?.apply {
+            movieId = this.getInt(ListMoviesFragment.ID_MOVIE, 0)
+            println()
         }
+        viewModel.getMovieDetail(movieId, requireContext().isConnected())
 
-        private const val TAG = "DetailMovieActivity"
-        private const val MOVIE_ID = "MOVIE_ID"
     }
-
-    private fun getArguments() {
-        movieId = intent.getIntExtra(MOVIE_ID, 0)
-    }
-
 
     override fun initObserver() {
-
         viewModel.movieDetailLiveData.observe(this) {
             setupView(it)
         }
@@ -49,22 +56,12 @@ class DetailMovieActivity : BaseActivity() {
         viewModel.mutableException.observe(this) {
             validateException(it)
         }
-
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityDetailMovieBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        getArguments()
-        viewModel.getMovieDetail(movieId, this.isConnected())
     }
 
     private fun setupView(detailMovie: DetailMovie?) {
         detailMovie?.let {
             if (it.id == 0) {
-                showMessageSnack("No tienes conexion a internet, ni data local de este pokemon")
+                showMessageException("No tienes conexion a internet, ni data local de este pokemon")
             } else {
                 binding.tvName.text = it.name
                 binding.customImageView.setImage(it.sprites?.backDefault, it.name)

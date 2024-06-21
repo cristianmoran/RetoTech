@@ -1,4 +1,4 @@
-package com.whiz.reto.core
+package com.whiz.reto.core.base
 
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

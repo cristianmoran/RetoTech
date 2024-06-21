@@ -1,4 +1,4 @@
-package com.whiz.reto.core
+package com.whiz.reto.core.base
 
 import android.os.Bundle
 import android.view.View
@@ -18,14 +18,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private var progressDialog: BaseDialog = BaseDialog()
     private var progressInitialized = false
-
-    abstract fun initObserver()
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initObserver()
-    }
 
     private fun showProgressDialog() {
         if (!progressInitialized) {
@@ -64,13 +56,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun handleVisibilityProgressLoadStates(it: UiLoadState?) {
         return when (it) {
-            UiLoadState.Loading -> {
-                showProgressDialog()
-            }
-
-            else -> {
-                hideProgressDialog()
-            }
+            UiLoadState.Loading -> showProgressDialog()
+            else -> hideProgressDialog()
         }
     }
 

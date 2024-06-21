@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/listMoviesFragment">
+
+    <fragment
+        android:id="@+id/listMoviesFragment"
+        android:name="com.whiz.reto.presentation.feature.main.listmovies.ListMoviesFragment"
+        android:label="ListMoviesFragment"
+        tools:layout="@layout/fragment_list_movies">
+        <action
+            android:id="@+id/action_listMoviesFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.whiz.reto.presentation.feature.main.detail.DetailMovieFragment"
+        android:label="DetailMovieFragment"
+        tools:layout="@layout/fragment_detail_movie">
+    </fragment>
+
+</navigation>

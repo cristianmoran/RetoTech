@@ -1,9 +1,9 @@
-package com.whiz.reto.presentation.feature.main
+package com.whiz.reto.presentation.feature.main.listmovies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.whiz.reto.core.BaseViewModel
+import com.whiz.reto.core.base.BaseViewModel
 import com.whiz.reto.core.uimodel.UiLoadState
 import com.whiz.reto.domain.entity.movies.ListMovies
 import com.whiz.reto.domain.entity.movies.Movie
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class ListMoviesViewModel @Inject constructor(
     private val listMoviesUseCase: ListMoviesUseCase
 ) : BaseViewModel() {
 

@@ -1,4 +1,4 @@
-package com.whiz.reto.presentation.feature.main.adapter
+package com.whiz.reto.presentation.feature.main.listmovies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

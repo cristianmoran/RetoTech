@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.whiz.reto.core.BaseDialog
+import com.whiz.reto.core.base.BaseDialog
 import com.whiz.reto.core.extensions.updateImageDrawable
 import com.whiz.reto.databinding.DialogMessageBinding
 import java.io.Serializable

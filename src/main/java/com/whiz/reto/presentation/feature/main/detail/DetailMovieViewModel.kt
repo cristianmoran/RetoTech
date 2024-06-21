@@ -1,9 +1,9 @@
-package com.whiz.reto.presentation.feature.detail
+package com.whiz.reto.presentation.feature.main.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.whiz.reto.core.BaseViewModel
+import com.whiz.reto.core.base.BaseViewModel
 import com.whiz.reto.core.uimodel.UiLoadState
 import com.whiz.reto.domain.entity.movies.DetailMovie
 import com.whiz.reto.domain.usecase.GetMovieDetailUseCase

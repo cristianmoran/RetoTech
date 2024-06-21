@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.whiz.reto.core.BaseBottomSheet
+import com.whiz.reto.core.base.BaseBottomSheet
 import com.whiz.reto.core.model.MessageDialogModel
 import com.whiz.reto.databinding.FragmentMessageBottomSheetBinding
 

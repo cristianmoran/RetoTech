@@ -1,7 +1,8 @@
-package com.whiz.reto.core
+package com.whiz.reto.core.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.whiz.reto.core.SingleLiveEvent
 import com.whiz.reto.core.network.EventResult
 import com.whiz.reto.core.uimodel.UiLoadState
 
